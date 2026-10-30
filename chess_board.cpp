@@ -1,6 +1,7 @@
 #include "chess_board.h"
 #include <iostream>
 #include <iomanip>
+#include <cctype>
 
 // Helper methods for nibble-level operations
 inline uint8_t ChessBoard::getSquareNibble(uint8_t square) const {
@@ -40,7 +41,7 @@ Piece ChessBoard::getPiece(uint8_t square) const {
 
 void ChessBoard::setPiece(uint8_t square, Piece piece) {
     assert(square < 64 && "Square index out of range"); 
-    assert(piece <= 0x07 && "Invalid piece value (should be 0-7)");
+    assert(piece <= 0x0F && "Invalid piece value (should be 0-15)");
     
     setSquareNibble(square, piece);
 }
@@ -69,10 +70,10 @@ void ChessBoard::initializeStartingPosition() {
     }
     
     // Set up white pieces (rank 7)
-    board_[7] = makePiece(Color::WHITE, PieceType::ROOK) | (makePiece(Color::WHITE, PieceType::KNIGHT) << 4);
-    board_[6] = makePiece(Color::WHITE, PieceType::BISHOP) | (makePiece(Color::WHITE, PieceType::QUEEN) << 4);
-    board_[5] = makePiece(Color::WHITE, PieceType::KING) | (makePiece(Color::WHITE, PieceType::BISHOP) << 4);
-    board_[4] = makePiece(Color::WHITE, PieceType::KNIGHT) | (makePiece(Color::WHITE, PieceType::ROOK) << 4);
+    board_[28] = makePiece(Color::WHITE, PieceType::ROOK) | (makePiece(Color::WHITE, PieceType::KNIGHT) << 4);
+    board_[29] = makePiece(Color::WHITE, PieceType::BISHOP) | (makePiece(Color::WHITE, PieceType::QUEEN) << 4);
+    board_[30] = makePiece(Color::WHITE, PieceType::KING) | (makePiece(Color::WHITE, PieceType::BISHOP) << 4);
+    board_[31] = makePiece(Color::WHITE, PieceType::KNIGHT) | (makePiece(Color::WHITE, PieceType::ROOK) << 4);
     
     // Set up white pawns (rank 6)
     for (int i = 0; i < 8; i++) {
